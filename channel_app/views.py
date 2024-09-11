@@ -1,7 +1,9 @@
-from django.shortcuts import render, HttpResponse, get_object_or_404
+from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
 from .models import *
 from users.models import Profile
 from django.contrib.auth.decorators import login_required
+from .forms import ChatMessageForm
+
 # Create your views here.
 
 @login_required
@@ -10,9 +12,20 @@ def index(request):
 	#chat_group = ChatGroup.objects.get(group_name="")
 	chat_group = get_object_or_404(ChatGroup, group_name="public-chat")
 	chat_messages = chat_group.chat_messages.all()[:30]
+	form = ChatMessageForm()
+	if request.method == "POST":
+		form = ChatMessageForm(request.POST)
+		if form.is_valid():
+			message = form.save(commit=False)
+			message.author = user
+			message.group = chat_group
+			message.save()
+			return redirect('index')
+
 	context = {
 		'chat_messages':chat_messages,
 		'user':user,
+		'form':form,
 	}
 	return render(request, 'index.html', context)
 
