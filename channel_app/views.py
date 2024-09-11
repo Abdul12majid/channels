@@ -13,14 +13,18 @@ def index(request):
 	chat_group = get_object_or_404(ChatGroup, group_name="public-chat")
 	chat_messages = chat_group.chat_messages.all()[:30]
 	form = ChatMessageForm()
-	if request.method == "POST":
+	if request.htmx:
 		form = ChatMessageForm(request.POST)
 		if form.is_valid():
 			message = form.save(commit=False)
 			message.author = user
 			message.group = chat_group
 			message.save()
-			return redirect('index')
+			context = {
+				'message':message,
+				'user':user,
+			}
+			return render(request, 'htmx_folder/chat_message_p.html', context)
 
 	context = {
 		'chat_messages':chat_messages,
