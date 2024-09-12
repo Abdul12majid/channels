@@ -4,7 +4,7 @@ from users.models import Profile
 from django.contrib.auth.decorators import login_required
 from .forms import ChatMessageForm
 
-# Create your views here.
+# Create your views here. 
 
 @login_required
 def index(request):
