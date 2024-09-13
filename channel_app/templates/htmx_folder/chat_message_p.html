@@ -1,29 +1,32 @@
-<div class="fade-in-up">
-{% include 'chat_message.html' %}
+<div id="chat_messages" hx-swap-oob="beforeend">
+
+    <div class="fade-in-up">
+      {% include 'chat_message.html' %}
+    </div>
+
+    <style>
+    	@keyframes fadeInAndUp {
+    		from { opacity: 0; transform: translateY(12px); }
+    		from { opacity: 1; transform: translateY(0px); }
+    	}
+    	.fade-in-up {
+    		animation: fadeInAndUp 1.5s ease;
+    	}
+    </style>
+
+    <script>
+        function scrollToBottom(elementId) {
+          const container = document.getElementById(elementId);
+
+          if (container) {
+            container.scrollTop = container.scrollHeight;
+          } else {
+            console.error(`Element with ID "${elementId}" not found.`);
+          }
+        }
+
+        // Example usage:
+        scrollToBottom("chat_container");
+    </script>
+
 </div>
-
-<style>
-	@keyframes fadeInAndUp {
-		from { opacity: 0; transform: translateY(12px); }
-		from { opacity: 1; transform: translateY(0px); }
-	}
-
-	.fade-in-up {
-		animation: fadeInAndUp 1.5s ease;
-	}
-</style>
-
-<script>
-    function scrollToBottom(elementId) {
-      const container = document.getElementById(elementId);
-
-      if (container) {
-        container.scrollTop = container.scrollHeight;
-      } else {
-        console.error(`Element with ID "${elementId}" not found.`);
-      }
-    }
-
-    // Example usage:
-    scrollToBottom("chat_container");
-</script>
