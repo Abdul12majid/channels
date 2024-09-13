@@ -30,11 +30,21 @@ class ChatroomConsumer(WebsocketConsumer):
 			author=self.user, 
 			group=self.chatroom
 			)
+		event = {
+		'type': 'message_handler',
+		'message_id': message.id,
+		}
 
+		async_to_sync(self.channel_layer.group_send)(
+			self.chatroom_name, event
+			)
+
+	def message_handler(self.event):
+		message_id = event['message_id']
+		message = GroupMessage.objects.get(id=message_id)
 		context = {
 			'message': message,
 			'user': self.user,
 		}
 		html = render_to_string("htmx_folder/chat_message_p.html", context=context)
 		self.send(text_data=html)
-		
