@@ -15,7 +15,10 @@ class ChatroomConsumer(WebsocketConsumer):
 			)
 		self.accept()
 
-	
+	def disconnect(self, close_code):
+		async_to_sync(self.channel_layer.group_discard)(
+			self.chatroom_name, self.channel_name
+			)
 
 
 	def receive(self, text_data):
@@ -33,5 +36,5 @@ class ChatroomConsumer(WebsocketConsumer):
 			'user': self.user,
 		}
 		html = render_to_string("htmx_folder/chat_message_p.html", context=context)
-
 		self.send(text_data=html)
+		
