@@ -39,7 +39,7 @@ class ChatroomConsumer(WebsocketConsumer):
 			self.chatroom_name, event
 			)
 
-	def message_handler(self.event):
+	def message_handler(self, event):
 		message_id = event['message_id']
 		message = GroupMessage.objects.get(id=message_id)
 		context = {
