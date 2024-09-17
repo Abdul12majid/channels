@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<h1>{{ user.username }}</h1>
+
+{% if profile.user != user %}
+<a class="btn btn-primary btn-sm" href="{% url 'profile' profile.user.username %}">Chat w me</a>
+{% endif %}
+{% endblock %}
+
+<script>
+    function scrollToBottom(elementId) {
+      const container = document.getElementById(elementId);
+
+      if (container) {
+        container.scrollTop = container.scrollHeight;
+      } else {
+        console.error(`Element with ID "${elementId}" not found.`);
+      }
+    }
+
+    // Example usage:
+    scrollToBottom("chat_container");
+</script>
