@@ -17,7 +17,7 @@ def index(request, chatroom_name='public-chat'):
 
 	other_user = None
 	if chat_group.is_private:
-		if request.user not in chat_group.members.all:
+		if request.user not in chat_group.members.all():
 			raise Http404
 		for member in chat_group.members.all():
 			if member != request.user:
@@ -34,6 +34,7 @@ def index(request, chatroom_name='public-chat'):
 			context = {
 				'message':message,
 				'user':user,
+
 			}
 			return render(request, 'htmx_folder/chat_message_p.html', context)
 
@@ -42,6 +43,7 @@ def index(request, chatroom_name='public-chat'):
 		'user':user,
 		'form':form,
 		'other_user': other_user,
+		'chatroom_name': chatroom_name,
 	}
 	return render(request, 'index.html', context)
 

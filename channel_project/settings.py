@@ -77,20 +77,20 @@ TEMPLATES = [
 #WSGI_APPLICATION = "channel_project.wsgi.application"
 ASGI_APPLICATION = 'channel_project.asgi.application'
 
-#CHANNEL_LAYERS = {
- #   'default':{
-  #      "BACKEND": "channels.layers.InMemoryChannelLayer",
-   # }
-#}
-
 CHANNEL_LAYERS = {
-    "default": {
-        "BACKEND": "channels_redis.core.RedisChannelLayer",
-        "CONFIG": {
-            "hosts": [('rediss://red-crkitv88fa8c738es73g:kG4G32hcezFyvfv45DuNR5Bu0odFrEr2@oregon-redis.render.com:6379')],
-        },
-    },
+    'default':{
+        "BACKEND": "channels.layers.InMemoryChannelLayer",
+    }
 }
+
+#CHANNEL_LAYERS = {
+ #   "default": {
+  #      "BACKEND": "channels_redis.core.RedisChannelLayer",
+   #     "CONFIG": {
+    #        "hosts": [('rediss://red-crkitv88fa8c738es73g:kG4G32hcezFyvfv45DuNR5Bu0odFrEr2@oregon-redis.render.com:6379')],
+     #   },
+    #},
+#}
 
 
 # Database

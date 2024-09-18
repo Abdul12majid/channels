@@ -6,13 +6,14 @@
 </br></br>
 <center>
 <div class="container">
-<img height="100" width="100" class="" src="{{profile.image.url}}">
+<img style="border-radius: 100px" height="200" width="200" class="" src="{{profile.image.url}}">
 
     
 <h1>{{ profile.username }}</h1>
+<h6>@{{ profile.profile_owner.username }}</h6>
 
 {% if profile.profile_owner != user %}
-<a class="btn btn-primary btn-sm" href="{% url 'profile' profile.profile_owner.username %}">Chat w me</a>
+<a class="btn btn-primary btn-sm" href="{% url 'start_chat' profile.profile_owner.username %}">Chat w me</a>
 {% endif %}
 
 </div>
