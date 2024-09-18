@@ -3,10 +3,10 @@
 
 {% block content %}
 
-<h1>{{ user.username }}</h1>
+<h1>{{ profile.username }}</h1>
 
 {% if profile.user != user %}
-<a class="btn btn-primary btn-sm" href="{% url 'profile' profile.user.username %}">Chat w me</a>
+<a class="btn btn-primary btn-sm" href="{% url 'profile' profile.profile_owner.id %}">Chat w me</a>
 {% endif %}
 {% endblock %}
 

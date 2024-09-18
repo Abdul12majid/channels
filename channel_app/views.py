@@ -49,8 +49,8 @@ def index(request, chatroom_name='public-chat'):
 #{% url 'profile' message.author.username %}
 def profile(request, pk):
 	user = request.user
-	profile = Profile.objects.get(username=pk)
-	pk = profile.username
+	profile = Profile.objects.get(profile_owner__username=pk)
+	pk = 1
 	context = {
 		"user":user,
 		"profile":profile,
