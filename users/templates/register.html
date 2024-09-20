@@ -7,7 +7,7 @@
 <form>
   <div class="form-group">
     <label for="exampleInputUsername">Username</label>
-    <input name="username" type="text" class="form-control" id="exampleInputUsername" aria-describedby="UsernameHelp" placeholder="Enter Username">
+    <input name="username" type="text" class="form-control" id="exampleInputUsername" aria-describedby="UsernameHelp" placeholder="Enter Username" hx-post="{% url 'verify_reg_details' %}" hx-target=#usernameHelp hx-swap="innerhtml" hx-trigger="keyup throttle: 2s">
     <small id="usernameHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
   </div>
   <div class="form-group">

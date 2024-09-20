@@ -53,5 +53,5 @@ def verify_reg_details(request):
 
 
 def register(request):
-	return HttpResponse("register p[age]")
+	return render(request, 'register.html')
 
