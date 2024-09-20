@@ -33,12 +33,24 @@ def profile(request, pk):
 	return render(request, 'profile.html', context)
 
 
-def verify_details(request):
+def verify_log_details(request):
 	username = request.POST.get('username')
 	if User.objects.filter(username=username).exists():
-		return HttpResponse("<p>You can login</p>")
+		return HttpResponse("<p class='success'>You can login</p>")
 	else:
-		return HttpResponse("<p>Username not found</p>")
+		return HttpResponse("<p class='error'>Username not found</p>")
+
+def verify_reg_details(request):
+	username = request.POST.get('username')
+	password1 = request.POST.get('password1')
+	password2 = request.POST.get('password2')
+	if User.objects.filter(username=username).exists():
+		return HttpResponse("<p class='success'>Username taken, pick another.</p>")
+	elif password1 != password2:
+		return HttpResponse("<p class='error'>Password does not match</p>")
+	else:
+		return HttpResponse("<p class='success'>Username available.</p>")
+
 
 def register(request):
 	return HttpResponse("register p[age]")

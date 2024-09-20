@@ -36,7 +36,7 @@
             @apply bg-indigo-600 text-white font-bold px-6 py-4 inline-block 
             rounded-lg shadow-lg transition-all cursor-pointer
         }
-        .button:hover, button:hover, [type='submit']:hover, [type='button']:hover { 
+        .button:hover, button:hover, [type='submit']:hover, [type='button']:hover {
             @apply bg-indigo-700
         }
         .button:active, button:active, [type='submit']:active, [type='button']:active {
@@ -72,7 +72,8 @@
         .allauth content a:hover {
             @apply text-indigo-500
         }
-        
+        .allauth form[action="/accounts/signup/"] ul {
+            @apply hidden
         }
         .allauth form[action="/accounts/signup/"] ul.errorlist {
             @apply block
