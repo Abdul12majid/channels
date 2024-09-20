@@ -34,7 +34,7 @@ def profile(request, pk):
 
 
 def verify_details(request):
-	username = request.post.get('username')
+	username = request.POST.get('username')
 	if User.objects.filter(username=username).exists():
 		return HttpResponse("<p>You can login</p>")
 	else:
