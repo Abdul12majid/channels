@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+</br></br></br>
+<div class='col-md-6 offset-md-3'>
+<form>
+  <div class="form-group">
+    <label for="exampleInputUsername">Username</label>
+    <input name="username" type="text" class="form-control" id="exampleInputUsername" aria-describedby="UsernameHelp" placeholder="Enter Username">
+    <small id="usernameHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input name="password1" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Confirm Password</label>
+    <input name="password2" type="password" class="form-control" id="exampleInputPassword2" placeholder="Password">
+  </div>
+  <button type="submit" class="btn btn-primary">Sign-up</button>
+</form>
+</div>
+
+{% endblock %}
