@@ -48,18 +48,6 @@ def index(request, chatroom_name='public-chat'):
 	return render(request, 'index.html', context)
 
 
-#{% url 'profile' message.author.username %}
-def profile(request, pk):
-	user = request.user
-	profile = Profile.objects.get(profile_owner__username=pk)
-	pk = 1
-	context = {
-		"user":user,
-		"profile":profile,
-	}
-	return render(request, 'profile.html', context)
-
-
 def get_or_create_chatroom(request, username):
 	if request.user.username == username:
 		return redirect('index')
