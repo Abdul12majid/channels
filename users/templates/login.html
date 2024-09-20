@@ -4,11 +4,11 @@
 
 </br></br></br>
 <div class='col-md-6 offset-md-3'>
-<form>
+<form method="post" validate>
   <div class="form-group">
     <label for="exampleInputUsername">Username</label>
-    <input name="username" type="text" class="form-control" id="exampleInputUsername" aria-describedby="UsernameHelp" placeholder="Enter Username">
-    <small id="usernameHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    <input name="username" type="text" class="form-control" id="exampleInputUsername" aria-describedby="UsernameHelp" placeholder="Enter Username" hx-post="{% url 'verify_details' %}" hx-target=#usernameHelp hx-swap="innerhtml" hx-trigger="keyup">
+    <small id="usernameHelp" class="form-text text-muted"></small>
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Password</label>
