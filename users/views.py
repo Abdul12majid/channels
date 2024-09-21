@@ -8,14 +8,14 @@ def login_user(request):
 	if request.method == "POST":
 		username = request.POST['username']
 		password = request.POST['password1']
-		check_username = User.objects.filter(username=username)
-		if check_username.exists():
+		check_username = User.objects.filter(username=username).exists()
+		if user is True:
 			user = authenticate(request, username=username, password=password)
 			if User is not None:
 				login(request, user)
-			else:
-				print("error loggin in")
 				return redirect('index')
+			else:
+				return render(request, 'login.html')
 		return redirect('register')
 
 	return render(request, 'login.html')
