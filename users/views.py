@@ -13,7 +13,6 @@ def login_user(request):
 			user = authenticate(request, username=username, password=password)
 			if User is not None:
 				login(request, user)
-				return redirect('index')
 			else:
 				print("error loggin in")
 				return redirect('index')
@@ -66,10 +65,22 @@ def verify_password2(request):
 		return HttpResponse("<p class='success'><b></b></p>")
 
 
-
-
-
-
 def register(request):
+	if request.POST:
+		username = request.POST['username']
+		password1 = request.POST.get('password1')
+		password2 = request.POST.get('password2')
+		if password1 != password2:
+			if User.objects.get(username=username).exists():
+				return HttpResponse("<p class='success'><b></b></p>")
+			else:
+				user = User.objects.create(username=username, password=password2)
+				user.save()
+				get_user = authenticate(username=username, password=password2)
+				login(request, get_user)
+				return redirect('index')
+		else:
+			print('Password mismatch')
+			return redirect('register')
 	return render(request, 'register.html')
 
