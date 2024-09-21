@@ -46,8 +46,6 @@ def verify_username(request):
 		return HttpResponse("<p class='error'><b>Username too short.</b></p>")
 	elif User.objects.filter(username=username).exists():
 		return HttpResponse("<p class='error'><b>Username taken, pick another.</b></p>")
-	elif password1 != password2:
-		return HttpResponse("<p class='error'><b>Password does not match</b></p>")
 	else:
 		return HttpResponse("<p class='success'><b>Username available.</b></p>")
 
