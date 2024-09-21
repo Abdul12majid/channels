@@ -51,6 +51,15 @@ def verify_username(request):
 	else:
 		return HttpResponse("<p class='success'><b>Username available.</b></p>")
 
+def verify_password(request):
+	password1 = request.POST.get('password1')
+	password2 = request.POST.get('password2')
+	if len(password1) < 4:
+		return HttpResponse("<p class='error'><b>Password too short.</b></p>")
+	elif password2 != password1:
+		return HttpResponse("<p class='error'><b>Password does not match !!!</b></p>")
+
+
 
 def register(request):
 	return render(request, 'register.html')
