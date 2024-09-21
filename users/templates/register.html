@@ -21,12 +21,12 @@
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Password</label>
-    <input name="password1" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" hx-post="{% url 'verify_password' %}" hx-target="#password1Help" hx-swap="innerhtml" hx-trigger="keyup">
+    <input name="password1" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" hx-post="{% url 'verify_password1' %}" hx-target="#password1Help" hx-swap="innerhtml" hx-trigger="keyup throttle: 2s">
     <small id="password1Help" class="form-text text-muted"></small>
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Confirm Password</label>
-    <input name="password2" type="password" class="form-control" id="exampleInputPassword2" placeholder="Confirm Password" hx-post="{% url 'verify_password' %}" hx-target="#password2Help" hx-swap="innerhtml" hx-triger="keyup">
+    <input name="password2" type="password" class="form-control" id="exampleInputPassword2" placeholder="Confirm Password" hx-post="{% url 'verify_password2' %}" hx-target="#password2Help" hx-swap="innerhtml" hx-trigger="keyup">
     <small id="password2Help" class="form-text text-muted"></small>
   </div>
   <button type="submit" class="btn btn-primary">Sign-up</button>
