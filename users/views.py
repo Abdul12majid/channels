@@ -71,7 +71,7 @@ def register(request):
 		password1 = request.POST.get('password1')
 		password2 = request.POST.get('password2')
 		if password1 == password2:
-			if User.objects.get(username=username).exists():
+			if User.objects.filter(username=username).exists():
 				return HttpResponse("<p class='success'><b></b></p>")
 			else:
 				user = User.objects.create(username=username, password=password2)
