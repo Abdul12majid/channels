@@ -5,21 +5,21 @@ from django.contrib.auth import authenticate, login, logout
 # Create your views here.
 
 def login_user(request):
-    if request.method == "POST":
-        username = request.POST['username']
-        password = request.POST['password1']
-        try:
-            user = User.objects.get(username=username)
-            get_user = authenticate(request, username=username, password=password)
-            if get_user is not None:
-                login(request, get_user)
-                return redirect('index')
-            else:
-                return render(request, 'login.html')
-        except User.DoesNotExist:
-            return redirect('register')
+	if request.method == "POST":
+		username = request.POST['username']
+		password = request.POST['password1']
+		user = User.objects.filter(username=username).exists()
+		if user is True:
+			get_user = User.objects.get(username=username)
+			user_username = get_user.username
+			auth_user = authenticate(request, username=user_username, password=password)
+			if auth_user is not None:
+				login(request, get_user)
+				return redirect('index')
+			return render(request, 'login.html')
+		return redirect('register')
 
-    return render(request, 'login.html')
+	return render(request, 'login.html')
 
 
 def profile(request, pk):
@@ -75,7 +75,7 @@ def register(request):
 			if User.objects.filter(username=username).exists():
 				return HttpResponse("<p class='success'><b></b></p>")
 			else:
-				user = User.objects.create(username=username, password=password2)
+				user = User.objects.create_user(username=username, password=password2)
 				user.save()
 				get_user = authenticate(username=username, password=password2)
 				login(request, get_user)
