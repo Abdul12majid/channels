@@ -40,16 +40,16 @@ def verify_log_details(request):
 	else:
 		return HttpResponse("<p class='error'>Username not found</p>")
 
-def verify_reg_details(request):
+def verify_username(request):
 	username = request.POST.get('username')
-	password1 = request.POST.get('password1')
-	password2 = request.POST.get('password2')
-	if User.objects.filter(username=username).exists():
-		return HttpResponse("<p class='success'>Username taken, pick another.</p>")
+	if len(username) < 5:
+		return HttpResponse("<p class='error'><b>Username too short.</b></p>")
+	elif User.objects.filter(username=username).exists():
+		return HttpResponse("<p class='error'><b>Username taken, pick another.</b></p>")
 	elif password1 != password2:
-		return HttpResponse("<p class='error'>Password does not match</p>")
+		return HttpResponse("<p class='error'><b>Password does not match</b></p>")
 	else:
-		return HttpResponse("<p class='success'>Username available.</p>")
+		return HttpResponse("<p class='success'><b>Username available.</b></p>")
 
 
 def register(request):

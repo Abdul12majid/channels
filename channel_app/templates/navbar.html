@@ -5,9 +5,9 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul style="color: white;" class="navbar-nav mr-auto">
+    <ul class="navbar-nav mr-auto">
       {% if user.is_authenticated %}
-      <li class="nav-item active">
+      <li style="color: white;" class="nav-item active">
         <a class="nav-link" href="#">Logout<span class="sr-only">(current)</span></a>
       </li>
       {% else %}
